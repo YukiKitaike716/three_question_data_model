@@ -18,13 +18,13 @@ class QuestionNotifier extends StateNotifier<List<Question>> {
       : super([
           const Question.overallQuestion(1, OverallEvaluation.good),
           const Question.detailQuestion(
-              OverallEvaluation.good, 3, '楽しかった', false),
+              OverallEvaluation.good, 2, '楽しかった', false),
           const Question.detailQuestion(
-              OverallEvaluation.good, 4, 'おいしかった', false),
+              OverallEvaluation.good, 3, 'おいしかった', false),
           const Question.detailQuestion(
-              OverallEvaluation.bad, 5, 'つまらなかった', false),
+              OverallEvaluation.bad, 4, 'つまらなかった', false),
           const Question.detailQuestion(
-              OverallEvaluation.bad, 6, 'まずかった', false),
+              OverallEvaluation.bad, 5, 'まずかった', false),
         ]);
 
   final Ref ref;
