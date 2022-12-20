@@ -1,37 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
-
-enum OverallEvaluation {
-  good('Good'),
-  bad('Bad'),
-  none('None');
-
-  final String name;
-  const OverallEvaluation(this.name);
-
-  String get buttonLabel => '$name なぜこれを選びましたか？';
-
-  Icon? get buttonImage {
-    switch (this) {
-      case good:
-        return Icon(Icons.fmd_good);
-      case bad:
-        return Icon(Icons.dangerous);
-      case none:
-        return null;
-    }
-  }
-}
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:three_question_data_model/model/entities/question.dart';
 
 class QuestionPage extends ConsumerWidget {
-  const QuestionPage({Key? key}) : super(key: key);
+  const QuestionPage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     // final overallEvaluation =
     //     ref.watch(_viewModel.select((value) => value.overallEvaluation));
-    final overallEvaluation = OverallEvaluation.good;
+    const overallEvaluation = OverallEvaluation.good;
 
     return WillPopScope(
       onWillPop: () async {
@@ -39,26 +18,25 @@ class QuestionPage extends ConsumerWidget {
       },
       child: Scaffold(
         appBar: AppBar(
-          title: Text('test'),
+          title: const Text('Three Questions Demo'),
         ),
         backgroundColor: Colors.white,
         body: SingleChildScrollView(
           padding: const EdgeInsets.symmetric(horizontal: 16),
           child: SafeArea(
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
               children: [
                 const Gap(16),
                 Wrap(
                   spacing: 16,
                   runSpacing: 8,
-                  children: [
+                  children: const [
                     _OverallEvaluationButton(
                       selectedOverallEvaluation: overallEvaluation,
                       buttonOverallEvaluation: OverallEvaluation.good,
                     ),
-                    const Gap(32),
+                    Gap(32),
                     _OverallEvaluationButton(
                       selectedOverallEvaluation: overallEvaluation,
                       buttonOverallEvaluation: OverallEvaluation.bad,
@@ -93,7 +71,7 @@ class _SecondHalfContent extends ConsumerWidget {
     // final isEnabledButton =
     //     ref.watch(_viewModel.select((value) => value.isEnabledButton));
 
-    final overallEvaluation = OverallEvaluation.good;
+    const overallEvaluation = OverallEvaluation.good;
 
     final questions = <String>['test', 'test2'];
     return Column(
@@ -101,11 +79,11 @@ class _SecondHalfContent extends ConsumerWidget {
       children: [
         const Gap(16),
         Container(
-          padding: EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+          decoration: BoxDecoration(borderRadius: BorderRadius.circular(20)),
           child: Text(
             overallEvaluation.buttonLabel,
           ),
-          decoration: BoxDecoration(borderRadius: BorderRadius.circular(20)),
         ),
         const Gap(4),
         const Gap(4),
@@ -121,10 +99,9 @@ class _SecondHalfContent extends ConsumerWidget {
 
 class _DetailQuestionCheckBox extends ConsumerWidget {
   const _DetailQuestionCheckBox({
-    Key? key,
     required this.selectedOverallEvaluation,
     required this.question,
-  }) : super(key: key);
+  });
 
   final OverallEvaluation selectedOverallEvaluation;
   //final FoodDeliveryEvaluateData question;
@@ -151,16 +128,16 @@ class _DetailQuestionCheckBox extends ConsumerWidget {
     //             )
     //           : const SizedBox.shrink();
     //     });
+    // ignore: avoid_returning_null_for_void
     return CheckboxListTile(value: false, onChanged: (_) => null);
   }
 }
 
 class _OverallEvaluationButton extends ConsumerWidget {
-  const _OverallEvaluationButton(
-      {Key? key,
-      required this.selectedOverallEvaluation,
-      required this.buttonOverallEvaluation})
-      : super(key: key);
+  const _OverallEvaluationButton({
+    required this.selectedOverallEvaluation,
+    required this.buttonOverallEvaluation,
+  });
 
   final OverallEvaluation selectedOverallEvaluation;
   final OverallEvaluation buttonOverallEvaluation;
@@ -169,7 +146,9 @@ class _OverallEvaluationButton extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
+      // ignore: avoid_returning_null_for_void
       onTap: () => null,
+      // ignore: use_decorated_box
       child: Container(
         decoration: BoxDecoration(
           color: selectedOverallEvaluation == buttonOverallEvaluation
@@ -182,7 +161,6 @@ class _OverallEvaluationButton extends ConsumerWidget {
           padding:
               const EdgeInsets.only(top: 16, left: 32, right: 32, bottom: 8),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
             children: [
               buttonOverallEvaluation.buttonImage ?? SizedBox.shrink(),
               const Gap(8),
