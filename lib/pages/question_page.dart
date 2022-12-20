@@ -2,15 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:three_question_data_model/model/entities/question.dart';
+import 'package:three_question_data_model/model/question_notifier.dart';
 
 class QuestionPage extends ConsumerWidget {
   const QuestionPage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // final overallEvaluation =
-    //     ref.watch(_viewModel.select((value) => value.overallEvaluation));
-    const overallEvaluation = OverallEvaluation.good;
+    final overallEvaluation = ref.watch(overallEvaluationProvider);
 
     return WillPopScope(
       onWillPop: () async {
@@ -31,12 +30,12 @@ class QuestionPage extends ConsumerWidget {
                 Wrap(
                   spacing: 16,
                   runSpacing: 8,
-                  children: const [
+                  children: [
                     _OverallEvaluationButton(
                       selectedOverallEvaluation: overallEvaluation,
                       buttonOverallEvaluation: OverallEvaluation.good,
                     ),
-                    Gap(32),
+                    const Gap(32),
                     _OverallEvaluationButton(
                       selectedOverallEvaluation: overallEvaluation,
                       buttonOverallEvaluation: OverallEvaluation.bad,
@@ -57,23 +56,14 @@ class QuestionPage extends ConsumerWidget {
 }
 
 class _SecondHalfContent extends ConsumerWidget {
-  const _SecondHalfContent({
-    Key? key,
-  }) : super(key: key);
+  const _SecondHalfContent();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // final questions = ref.watch(_viewModel.select((value) => value.questions));
+    final questions = ref.watch(questionsProvider);
 
-    // final overallEvaluation =
-    //     ref.watch(_viewModel.select((value) => value.overallEvaluation));
+    final overallEvaluation = ref.watch(overallEvaluationProvider);
 
-    // final isEnabledButton =
-    //     ref.watch(_viewModel.select((value) => value.isEnabledButton));
-
-    const overallEvaluation = OverallEvaluation.good;
-
-    final questions = <String>['test', 'test2'];
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -85,7 +75,6 @@ class _SecondHalfContent extends ConsumerWidget {
             overallEvaluation.buttonLabel,
           ),
         ),
-        const Gap(4),
         const Gap(4),
         for (final question in questions)
           _DetailQuestionCheckBox(
@@ -104,32 +93,29 @@ class _DetailQuestionCheckBox extends ConsumerWidget {
   });
 
   final OverallEvaluation selectedOverallEvaluation;
-  //final FoodDeliveryEvaluateData question;
-  final String question;
+  final Question question;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // return question.map(
-    //     overallQuestion: (OverallQuestion value) => const SizedBox.shrink(),
-    //     freeTextQuestion: (FreeTextQuestion value) => const SizedBox.shrink(),
-    //     detailQuestion: (DetailQuestion value) {
-    //       final questionId = value.questionId;
-    //       return value.overallEvaluation == selectedOverallEvaluation
-    //           ? CheckboxListTile(
-    //               dense: true,
-    //               title: Text(
-    //                 value.questionStatement,
-    //                 style: PickGoText.style18,
-    //               ),
-    //               controlAffinity: ListTileControlAffinity.leading,
-    //               value: value.checked,
-    //               onChanged: (_) =>
-    //                   ref.read(_viewModel).onTapCheckBox(questionId),
-    //             )
-    //           : const SizedBox.shrink();
-    //     });
-    // ignore: avoid_returning_null_for_void
-    return CheckboxListTile(value: false, onChanged: (_) => null);
+    return question.map(
+        overallQuestion: (OverallQuestion value) => const SizedBox.shrink(),
+        freeTextQuestion: (FreeTextQuestion value) => const SizedBox.shrink(),
+        detailQuestion: (DetailQuestion value) {
+          final questionId = value.questionId;
+          return value.overallEvaluation == selectedOverallEvaluation
+              ? CheckboxListTile(
+                  dense: true,
+                  title: Text(
+                    value.questionStatement,
+                  ),
+                  controlAffinity: ListTileControlAffinity.leading,
+                  value: value.checked,
+                  onChanged: (_) => ref
+                      .read(questionsProvider.notifier)
+                      .updateChecked(questionId),
+                )
+              : const SizedBox.shrink();
+        });
   }
 }
 

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:three_question_data_model/question_paga.dart';
+import 'package:three_question_data_model/pages/question_page.dart';
 
 void main() {
   runApp(const MyApp());
