@@ -40,12 +40,6 @@ class Question with _$Question {
     bool checked,
   ) = DetailQuestion;
 
-  const factory Question.freeTextQuestion(
-    OverallEvaluation overallEvaluation,
-    int questionId,
-    String text,
-  ) = FreeTextQuestion;
-
   const Question._();
 
   factory Question.fromJson(Map<String, dynamic> json) =>

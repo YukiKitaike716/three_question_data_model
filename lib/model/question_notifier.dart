@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:three_question_data_model/model/entities/question.dart';
 
@@ -16,7 +17,6 @@ class QuestionNotifier extends StateNotifier<List<Question>> {
   QuestionNotifier({required this.ref})
       : super([
           const Question.overallQuestion(1, OverallEvaluation.good),
-          const Question.overallQuestion(2, OverallEvaluation.bad),
           const Question.detailQuestion(
               OverallEvaluation.good, 3, '楽しかった', false),
           const Question.detailQuestion(
@@ -25,7 +25,6 @@ class QuestionNotifier extends StateNotifier<List<Question>> {
               OverallEvaluation.bad, 5, 'つまらなかった', false),
           const Question.detailQuestion(
               OverallEvaluation.bad, 6, 'まずかった', false),
-          const Question.freeTextQuestion(OverallEvaluation.good, 7, ''),
         ]);
 
   final Ref ref;
@@ -36,7 +35,6 @@ class QuestionNotifier extends StateNotifier<List<Question>> {
           (question) => question.map(
             overallQuestion: (OverallQuestion value) =>
                 value.copyWith(overallEvaluation: overallEvaluation),
-            freeTextQuestion: (FreeTextQuestion value) => value,
             detailQuestion: (DetailQuestion value) {
               return value.copyWith(checked: false);
             },
@@ -57,21 +55,26 @@ class QuestionNotifier extends StateNotifier<List<Question>> {
               return value;
             }
           },
-          freeTextQuestion: (FreeTextQuestion value) => value,
-        )
-    ];
-  }
-
-  void updateComment(String comment) {
-    state = [
-      for (final question in state)
-        question.map(
-          overallQuestion: (OverallQuestion value) => value,
-          detailQuestion: (DetailQuestion value) => value,
-          freeTextQuestion: (FreeTextQuestion value) {
-            return value.copyWith(text: comment);
-          },
         )
     ];
   }
 }
+
+final resultProvider = Provider<Iterable<String?>>((ref) {
+  final questions = ref.watch(questionsProvider);
+  final overallEvaluation = ref.watch(overallEvaluationProvider);
+  final temp = questions
+      .map(
+        (question) => question.map(
+          overallQuestion: (value) => value.overallEvaluation.name,
+          detailQuestion: (value) {
+            if (value.overallEvaluation == overallEvaluation) {
+              return '${value.questionStatement} : ${value.checked}';
+            }
+          },
+        ),
+      )
+      .whereNotNull()
+      .toList();
+  return temp;
+});

@@ -20,8 +20,6 @@ Question _$QuestionFromJson(Map<String, dynamic> json) {
       return OverallQuestion.fromJson(json);
     case 'detailQuestion':
       return DetailQuestion.fromJson(json);
-    case 'freeTextQuestion':
-      return FreeTextQuestion.fromJson(json);
 
     default:
       throw CheckedFromJsonException(json, 'runtimeType', 'Question',
@@ -41,9 +39,6 @@ mixin _$Question {
     required TResult Function(OverallEvaluation overallEvaluation,
             int questionId, String questionStatement, bool checked)
         detailQuestion,
-    required TResult Function(
-            OverallEvaluation overallEvaluation, int questionId, String text)
-        freeTextQuestion,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -53,9 +48,6 @@ mixin _$Question {
     TResult? Function(OverallEvaluation overallEvaluation, int questionId,
             String questionStatement, bool checked)?
         detailQuestion,
-    TResult? Function(
-            OverallEvaluation overallEvaluation, int questionId, String text)?
-        freeTextQuestion,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -65,9 +57,6 @@ mixin _$Question {
     TResult Function(OverallEvaluation overallEvaluation, int questionId,
             String questionStatement, bool checked)?
         detailQuestion,
-    TResult Function(
-            OverallEvaluation overallEvaluation, int questionId, String text)?
-        freeTextQuestion,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -75,21 +64,18 @@ mixin _$Question {
   TResult map<TResult extends Object?>({
     required TResult Function(OverallQuestion value) overallQuestion,
     required TResult Function(DetailQuestion value) detailQuestion,
-    required TResult Function(FreeTextQuestion value) freeTextQuestion,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(OverallQuestion value)? overallQuestion,
     TResult? Function(DetailQuestion value)? detailQuestion,
-    TResult? Function(FreeTextQuestion value)? freeTextQuestion,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(OverallQuestion value)? overallQuestion,
     TResult Function(DetailQuestion value)? detailQuestion,
-    TResult Function(FreeTextQuestion value)? freeTextQuestion,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -228,9 +214,6 @@ class _$OverallQuestion extends OverallQuestion {
     required TResult Function(OverallEvaluation overallEvaluation,
             int questionId, String questionStatement, bool checked)
         detailQuestion,
-    required TResult Function(
-            OverallEvaluation overallEvaluation, int questionId, String text)
-        freeTextQuestion,
   }) {
     return overallQuestion(questionId, overallEvaluation);
   }
@@ -243,9 +226,6 @@ class _$OverallQuestion extends OverallQuestion {
     TResult? Function(OverallEvaluation overallEvaluation, int questionId,
             String questionStatement, bool checked)?
         detailQuestion,
-    TResult? Function(
-            OverallEvaluation overallEvaluation, int questionId, String text)?
-        freeTextQuestion,
   }) {
     return overallQuestion?.call(questionId, overallEvaluation);
   }
@@ -258,9 +238,6 @@ class _$OverallQuestion extends OverallQuestion {
     TResult Function(OverallEvaluation overallEvaluation, int questionId,
             String questionStatement, bool checked)?
         detailQuestion,
-    TResult Function(
-            OverallEvaluation overallEvaluation, int questionId, String text)?
-        freeTextQuestion,
     required TResult orElse(),
   }) {
     if (overallQuestion != null) {
@@ -274,7 +251,6 @@ class _$OverallQuestion extends OverallQuestion {
   TResult map<TResult extends Object?>({
     required TResult Function(OverallQuestion value) overallQuestion,
     required TResult Function(DetailQuestion value) detailQuestion,
-    required TResult Function(FreeTextQuestion value) freeTextQuestion,
   }) {
     return overallQuestion(this);
   }
@@ -284,7 +260,6 @@ class _$OverallQuestion extends OverallQuestion {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(OverallQuestion value)? overallQuestion,
     TResult? Function(DetailQuestion value)? detailQuestion,
-    TResult? Function(FreeTextQuestion value)? freeTextQuestion,
   }) {
     return overallQuestion?.call(this);
   }
@@ -294,7 +269,6 @@ class _$OverallQuestion extends OverallQuestion {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(OverallQuestion value)? overallQuestion,
     TResult Function(DetailQuestion value)? detailQuestion,
-    TResult Function(FreeTextQuestion value)? freeTextQuestion,
     required TResult orElse(),
   }) {
     if (overallQuestion != null) {
@@ -445,9 +419,6 @@ class _$DetailQuestion extends DetailQuestion {
     required TResult Function(OverallEvaluation overallEvaluation,
             int questionId, String questionStatement, bool checked)
         detailQuestion,
-    required TResult Function(
-            OverallEvaluation overallEvaluation, int questionId, String text)
-        freeTextQuestion,
   }) {
     return detailQuestion(
         overallEvaluation, questionId, questionStatement, checked);
@@ -461,9 +432,6 @@ class _$DetailQuestion extends DetailQuestion {
     TResult? Function(OverallEvaluation overallEvaluation, int questionId,
             String questionStatement, bool checked)?
         detailQuestion,
-    TResult? Function(
-            OverallEvaluation overallEvaluation, int questionId, String text)?
-        freeTextQuestion,
   }) {
     return detailQuestion?.call(
         overallEvaluation, questionId, questionStatement, checked);
@@ -477,9 +445,6 @@ class _$DetailQuestion extends DetailQuestion {
     TResult Function(OverallEvaluation overallEvaluation, int questionId,
             String questionStatement, bool checked)?
         detailQuestion,
-    TResult Function(
-            OverallEvaluation overallEvaluation, int questionId, String text)?
-        freeTextQuestion,
     required TResult orElse(),
   }) {
     if (detailQuestion != null) {
@@ -494,7 +459,6 @@ class _$DetailQuestion extends DetailQuestion {
   TResult map<TResult extends Object?>({
     required TResult Function(OverallQuestion value) overallQuestion,
     required TResult Function(DetailQuestion value) detailQuestion,
-    required TResult Function(FreeTextQuestion value) freeTextQuestion,
   }) {
     return detailQuestion(this);
   }
@@ -504,7 +468,6 @@ class _$DetailQuestion extends DetailQuestion {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(OverallQuestion value)? overallQuestion,
     TResult? Function(DetailQuestion value)? detailQuestion,
-    TResult? Function(FreeTextQuestion value)? freeTextQuestion,
   }) {
     return detailQuestion?.call(this);
   }
@@ -514,7 +477,6 @@ class _$DetailQuestion extends DetailQuestion {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(OverallQuestion value)? overallQuestion,
     TResult Function(DetailQuestion value)? detailQuestion,
-    TResult Function(FreeTextQuestion value)? freeTextQuestion,
     required TResult orElse(),
   }) {
     if (detailQuestion != null) {
@@ -551,208 +513,5 @@ abstract class DetailQuestion extends Question {
   @override
   @JsonKey(ignore: true)
   _$$DetailQuestionCopyWith<_$DetailQuestion> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$FreeTextQuestionCopyWith<$Res>
-    implements $QuestionCopyWith<$Res> {
-  factory _$$FreeTextQuestionCopyWith(
-          _$FreeTextQuestion value, $Res Function(_$FreeTextQuestion) then) =
-      __$$FreeTextQuestionCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({OverallEvaluation overallEvaluation, int questionId, String text});
-}
-
-/// @nodoc
-class __$$FreeTextQuestionCopyWithImpl<$Res>
-    extends _$QuestionCopyWithImpl<$Res, _$FreeTextQuestion>
-    implements _$$FreeTextQuestionCopyWith<$Res> {
-  __$$FreeTextQuestionCopyWithImpl(
-      _$FreeTextQuestion _value, $Res Function(_$FreeTextQuestion) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? overallEvaluation = null,
-    Object? questionId = null,
-    Object? text = null,
-  }) {
-    return _then(_$FreeTextQuestion(
-      null == overallEvaluation
-          ? _value.overallEvaluation
-          : overallEvaluation // ignore: cast_nullable_to_non_nullable
-              as OverallEvaluation,
-      null == questionId
-          ? _value.questionId
-          : questionId // ignore: cast_nullable_to_non_nullable
-              as int,
-      null == text
-          ? _value.text
-          : text // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
-}
-
-/// @nodoc
-@JsonSerializable()
-class _$FreeTextQuestion extends FreeTextQuestion {
-  const _$FreeTextQuestion(this.overallEvaluation, this.questionId, this.text,
-      {final String? $type})
-      : $type = $type ?? 'freeTextQuestion',
-        super._();
-
-  factory _$FreeTextQuestion.fromJson(Map<String, dynamic> json) =>
-      _$$FreeTextQuestionFromJson(json);
-
-  @override
-  final OverallEvaluation overallEvaluation;
-  @override
-  final int questionId;
-  @override
-  final String text;
-
-  @JsonKey(name: 'runtimeType')
-  final String $type;
-
-  @override
-  String toString() {
-    return 'Question.freeTextQuestion(overallEvaluation: $overallEvaluation, questionId: $questionId, text: $text)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$FreeTextQuestion &&
-            (identical(other.overallEvaluation, overallEvaluation) ||
-                other.overallEvaluation == overallEvaluation) &&
-            (identical(other.questionId, questionId) ||
-                other.questionId == questionId) &&
-            (identical(other.text, text) || other.text == text));
-  }
-
-  @JsonKey(ignore: true)
-  @override
-  int get hashCode =>
-      Object.hash(runtimeType, overallEvaluation, questionId, text);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$FreeTextQuestionCopyWith<_$FreeTextQuestion> get copyWith =>
-      __$$FreeTextQuestionCopyWithImpl<_$FreeTextQuestion>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(
-            int questionId, OverallEvaluation overallEvaluation)
-        overallQuestion,
-    required TResult Function(OverallEvaluation overallEvaluation,
-            int questionId, String questionStatement, bool checked)
-        detailQuestion,
-    required TResult Function(
-            OverallEvaluation overallEvaluation, int questionId, String text)
-        freeTextQuestion,
-  }) {
-    return freeTextQuestion(overallEvaluation, questionId, text);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(int questionId, OverallEvaluation overallEvaluation)?
-        overallQuestion,
-    TResult? Function(OverallEvaluation overallEvaluation, int questionId,
-            String questionStatement, bool checked)?
-        detailQuestion,
-    TResult? Function(
-            OverallEvaluation overallEvaluation, int questionId, String text)?
-        freeTextQuestion,
-  }) {
-    return freeTextQuestion?.call(overallEvaluation, questionId, text);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int questionId, OverallEvaluation overallEvaluation)?
-        overallQuestion,
-    TResult Function(OverallEvaluation overallEvaluation, int questionId,
-            String questionStatement, bool checked)?
-        detailQuestion,
-    TResult Function(
-            OverallEvaluation overallEvaluation, int questionId, String text)?
-        freeTextQuestion,
-    required TResult orElse(),
-  }) {
-    if (freeTextQuestion != null) {
-      return freeTextQuestion(overallEvaluation, questionId, text);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(OverallQuestion value) overallQuestion,
-    required TResult Function(DetailQuestion value) detailQuestion,
-    required TResult Function(FreeTextQuestion value) freeTextQuestion,
-  }) {
-    return freeTextQuestion(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(OverallQuestion value)? overallQuestion,
-    TResult? Function(DetailQuestion value)? detailQuestion,
-    TResult? Function(FreeTextQuestion value)? freeTextQuestion,
-  }) {
-    return freeTextQuestion?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(OverallQuestion value)? overallQuestion,
-    TResult Function(DetailQuestion value)? detailQuestion,
-    TResult Function(FreeTextQuestion value)? freeTextQuestion,
-    required TResult orElse(),
-  }) {
-    if (freeTextQuestion != null) {
-      return freeTextQuestion(this);
-    }
-    return orElse();
-  }
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$FreeTextQuestionToJson(
-      this,
-    );
-  }
-}
-
-abstract class FreeTextQuestion extends Question {
-  const factory FreeTextQuestion(final OverallEvaluation overallEvaluation,
-      final int questionId, final String text) = _$FreeTextQuestion;
-  const FreeTextQuestion._() : super._();
-
-  factory FreeTextQuestion.fromJson(Map<String, dynamic> json) =
-      _$FreeTextQuestion.fromJson;
-
-  @override
-  OverallEvaluation get overallEvaluation;
-  @override
-  int get questionId;
-  String get text;
-  @override
-  @JsonKey(ignore: true)
-  _$$FreeTextQuestionCopyWith<_$FreeTextQuestion> get copyWith =>
       throw _privateConstructorUsedError;
 }

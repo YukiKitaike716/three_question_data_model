@@ -45,20 +45,3 @@ Map<String, dynamic> _$$DetailQuestionToJson(_$DetailQuestion instance) =>
       'checked': instance.checked,
       'runtimeType': instance.$type,
     };
-
-_$FreeTextQuestion _$$FreeTextQuestionFromJson(Map<String, dynamic> json) =>
-    _$FreeTextQuestion(
-      $enumDecode(_$OverallEvaluationEnumMap, json['overallEvaluation']),
-      json['questionId'] as int,
-      json['text'] as String,
-      $type: json['runtimeType'] as String?,
-    );
-
-Map<String, dynamic> _$$FreeTextQuestionToJson(_$FreeTextQuestion instance) =>
-    <String, dynamic>{
-      'overallEvaluation':
-          _$OverallEvaluationEnumMap[instance.overallEvaluation]!,
-      'questionId': instance.questionId,
-      'text': instance.text,
-      'runtimeType': instance.$type,
-    };

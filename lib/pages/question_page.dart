@@ -10,6 +10,7 @@ class QuestionPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final overallEvaluation = ref.watch(overallEvaluationProvider);
+    final result = ref.watch(resultProvider);
 
     return Scaffold(
       appBar: AppBar(
@@ -43,6 +44,7 @@ class QuestionPage extends ConsumerWidget {
                     ? const SizedBox.shrink()
                     : const _SecondHalfContent(),
                 const Gap(16),
+                Text('$result'),
               ],
             ),
           ),
@@ -96,7 +98,6 @@ class _DetailQuestionCheckBox extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return question.map(
         overallQuestion: (OverallQuestion value) => const SizedBox.shrink(),
-        freeTextQuestion: (FreeTextQuestion value) => const SizedBox.shrink(),
         detailQuestion: (DetailQuestion value) {
           final questionId = value.questionId;
           return value.overallEvaluation == selectedOverallEvaluation
