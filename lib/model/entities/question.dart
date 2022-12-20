@@ -9,17 +9,17 @@ enum OverallEvaluation {
   bad('Bad'),
   none('None');
 
-  final String name;
   const OverallEvaluation(this.name);
+  final String name;
 
   String get buttonLabel => 'Why did you think it was $name?';
 
   Icon? get buttonImage {
     switch (this) {
       case good:
-        return Icon(Icons.upcoming);
+        return const Icon(Icons.upcoming);
       case bad:
-        return Icon(Icons.dangerous);
+        return const Icon(Icons.dangerous);
       case none:
         return null;
     }
