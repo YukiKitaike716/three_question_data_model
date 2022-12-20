@@ -30,6 +30,21 @@ class QuestionNotifier extends StateNotifier<List<Question>> {
 
   final Ref ref;
 
+  void updateOverallEvaluation(OverallEvaluation overallEvaluation) {
+    state = state
+        .map(
+          (question) => question.map(
+            overallQuestion: (OverallQuestion value) =>
+                value.copyWith(overallEvaluation: overallEvaluation),
+            freeTextQuestion: (FreeTextQuestion value) => value,
+            detailQuestion: (DetailQuestion value) {
+              return value.copyWith(checked: false);
+            },
+          ),
+        )
+        .toList();
+  }
+
   void updateChecked(int questionId) {
     state = [
       for (final question in state)

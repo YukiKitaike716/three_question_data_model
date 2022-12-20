@@ -11,16 +11,13 @@ class QuestionPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final overallEvaluation = ref.watch(overallEvaluationProvider);
 
-    return WillPopScope(
-      onWillPop: () async {
-        return false;
-      },
-      child: Scaffold(
-        appBar: AppBar(
-          title: const Text('Three Questions Demo'),
-        ),
-        backgroundColor: Colors.white,
-        body: SingleChildScrollView(
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Three Questions Demo'),
+      ),
+      backgroundColor: Colors.white,
+      body: SafeArea(
+        child: SingleChildScrollView(
           padding: const EdgeInsets.symmetric(horizontal: 16),
           child: SafeArea(
             child: Column(
@@ -132,8 +129,9 @@ class _OverallEvaluationButton extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
-      // ignore: avoid_returning_null_for_void
-      onTap: () => null,
+      onTap: () => ref
+          .read(questionsProvider.notifier)
+          .updateOverallEvaluation(buttonOverallEvaluation),
       // ignore: use_decorated_box
       child: Container(
         decoration: BoxDecoration(
